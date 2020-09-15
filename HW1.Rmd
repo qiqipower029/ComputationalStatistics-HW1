@@ -1,0 +1,73 @@
+---
+title: "HW1"
+author: "Jieqi Tu"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+```
+
+##  Question 1
+
+#### (a)
+$$\int^{\infty}_{0} x(1+x^{2})^{-2} dx$$\
+Set $u = (1+x^2)$, then we can get: $\int^{\infty}_{0} x(1+x^{2})^{-2} dx = \frac{1}{2}\int^{\infty}_{1}u^{-2}du=\frac{1}{2}$\
+In order to transform $\int^{\infty}_{0}$ to $\int^{1}_{0}$, set $y=\frac{1}{1+x}$.\
+So $dx=-\frac{1}{y^2}dy$. Then we have $\int^{0}_{1}-\frac{1}{y^2}\frac{(1/y-1)}{(1+(1/y-1)^2)^{2}}dy$.
+```{r question1 a}
+# set seed
+set.seed(1029)
+
+# check theoretical value of the given integral using R:
+integral_a = function(x) {
+  x*(1+x^{2})^{-2}
+}
+integrate(integral_a, lower = 0, upper = Inf)$value
+# simulate using uniform distribution
+s = runif(100000)
+transform = (1/s^2)*(1/s-1)/(1+(1/s-1)^2)^2
+mean(transform)
+```
+
+
+#### (b)
+$$\int^{\infty}_{-\infty} e^{-x^2}dx$$\
+Because we already know the probability density function of Normal distribution: $f(x)=\frac{1}{\sigma \sqrt{2\pi}}e^{-\frac{1}{2}\frac{(x-\mu)^2}{\sigma^2}}$, we can let $\mu=1$, $\sigma=1/\sqrt{2}$.
+Then according to the property of probability density function, we have: $\int^{\infty}_{-\infty} e^{x^2}dx = \sqrt{\pi}$\
+To transform upper bound and lower bound, let $y = \frac{e^x}{1+e^x}$. Then we have $\int^{1}_{0} e^{\frac{logit^2(y)}{y(1-y)}}dy$
+
+```{r question 1 b}
+# set seed
+set.seed(1029)
+
+# check theoretical value of the given integral using R:
+integral_b = function(x) {
+  exp(-x^2)
+}
+integrate(integral_b, lower = -Inf, upper = Inf)$value
+# simulate using uniform distribution
+s = runif(100000)
+transform = exp(-(log(s/(1-s)))^2)/(s*(1-s))
+mean(transform)
+```
+
+#### (c)
+$$\int^{4}_{2} ln{x}dx$$\
+$\int^{4}_{2} lnxdx=xln{x}|_{2}^{4}-\int^{4}_{2} xdlnx=4ln4-2ln2-2\approx2.1588$. To transform the upper and lower bound, set $y=\frac{x-2}{2}$. Then we have$\int^{1}_{0} 2ln{(2y+2)}dy$.
+```{r question 1 c}
+# set seed
+set.seed(1029)
+
+# check theoretical value of the given integral using R:
+integral_c = function(x) {
+  log(x)
+}
+integrate(integral_c, lower = 2, upper = 4)$value
+# simulate using uniform distribution
+s = runif(1000000000)
+transform = 2*log(2*s+2)
+mean(transform)
+```
+
