@@ -151,7 +151,7 @@ mean(n_value)
 ```{r question 5, warning=FALSE}
 library(extraDistr)
 set.seed(1029)
-n_sim = 10000
+n_sim = 100000
 n_list = numeric(n_sim) # a list to store all the values of the number of experiments
 for (i in 1:n_sim) {
   d_list = c()
