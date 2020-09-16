@@ -110,8 +110,19 @@ set.seed(1029)
 
 # simulate
 sim_n = 10000
+n_value = c()
 for(i in 1:sim_n) {
-  
+  count = 0
+  sum = 0
+  while(sum <= 1) {
+    u = runif(1)
+    sum = sum + u
+    count = count + 1
+  }
+  n_value[i] = count
 }
+
+mean(n_value)
 ```
 
+## Question 4
