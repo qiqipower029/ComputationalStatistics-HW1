@@ -148,16 +148,34 @@ mean(n_value)
 ```
 
 ## Question 5
-```{r question 5}
+```{r question 5, warning=FALSE}
 library(extraDistr)
-n_sim = 100000
-n_value = c()
+set.seed(1029)
+n_sim = 10000
+n_list = numeric(n_sim) # a list to store all the values of the number of experiments
 for (i in 1:n_sim) {
-  d1 = rdunif(1, 1, 6)
-  d2 = rdunif(1, 1, 6)
-  sum12 = d1 + d2
-  n_value[i] = sum12
-  
-}
+  d_list = c()
+  statement = F
+  n_value = 0
+  while (statement == F) {
+    sum = 0
+    sum12 = sum(rdunif(2, 1, 6))
+    n_value = n_value + 1
+    d_list = c(d_list, sum12)
+    for (j in 2:12) {
+      within = as.numeric(j %in% d_list) # whether or not this outcome shows up in our experiments
+      sum = sum + within
+    }
+    statement = (sum == 11)
+  }
+  n_list[i] = n_value
+  }
+round(mean(n_list))
+
 ```
 
+## Question 6
+#### (a)
+Since $p_{j}=\frac{(j-1)!}{(j-r)!(r-1)!}p^r(1-p)^{j-r}$, $p_{j+1}=\frac{(j)!}{(j+1-r)!(r-1)!}p^r(1-p)^{j+1-r}$, we have $\frac{p_{j+1}}{p_{j}}=j(1-p)/(j+1-r)$
+
+#### (b)
