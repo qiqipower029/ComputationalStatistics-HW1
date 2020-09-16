@@ -71,3 +71,20 @@ transform = 2*log(2*s+2)
 mean(transform)
 ```
 
+#### (d)
+
+$$\int^{1}_{0}\int^{1}_{0} e^{x+y} dxdy$$\
+The exact value of this integral is $\int^{1}_{0}e^xdx\int^{1}_{0} e^{y}dy=(e-1)^2\approx2.952492$.
+```{r question 1 d}
+# set seed
+set.seed(1029)
+
+# simulate using uniform distribution
+x = runif(100000)
+y = runif(100000)
+transform = exp(x+y)
+mean(transform)
+```
+
+## Question 2
+$Cov(U,\sqrt{1-U^2}=E(U^2\sqrt{1-U^2})-E(U^2)E(\sqrt{1-U^2})$
