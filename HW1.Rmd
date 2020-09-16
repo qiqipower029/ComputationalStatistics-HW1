@@ -126,3 +126,30 @@ mean(n_value)
 ```
 
 ## Question 4
+```{r question 4}
+# set seed
+set.seed(1029)
+
+# simulate
+n_sim = 100000
+n_value = c()
+for (i in 1:n_sim) {
+    count = 0
+    prod = 1
+  while(prod >=exp(-3)) {
+    u = runif(1)
+    prod = prod * u
+    count = count + 1
+  }
+  n_value[i] = count
+  
+}
+mean(n_value)
+```
+
+## Question 5
+```{r question 5}
+library(extraDistr)
+n_sim
+```
+
