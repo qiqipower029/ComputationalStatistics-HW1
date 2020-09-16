@@ -89,4 +89,29 @@ mean(transform)
 ## Question 2
 $Cov(U,\sqrt{1-U^2}=E(U^2\sqrt{1-U^2})-E(U^2)E(\sqrt{1-U^2})$.\
 $E(U^2)=\int^{1}_{0}u^2du=u/3|^{1}_{0}=\frac{1}{3}$.\
-Let $u=sin\theta, du/d\theta=cos\theta$. Then $E(U^2\sqrt{1-U^2})=sin^2\theta$
+Let $u=sin\theta, du/d\theta=cos\theta$. Then $E(U^2\sqrt{1-U^2})=\int^{\pi/2}_{0}sin^2\theta cos^2\theta d\theta=\int^{\pi/2}_{0}\frac{1}{4}sin^22\theta d\theta=\frac{1}{8}\int^{\pi/2}_{0}1-cos4\theta d\theta=\frac{\pi}{16}$\
+$E(\sqrt{1-U^2})= \int_{0}^{1}\sqrt{1-u^2}du=\int_{0}^{\pi/2}cos\theta dsin\theta=\int_{0}^{\pi/2}cos^2\theta d\theta = \int_{0}^{\pi/2}\frac{1+cos2\theta}{2}d\theta=\\\int_{0}^{\pi/2}(\frac{1}{2}\theta+\frac{1}{4}sin2\theta)d\theta=\frac{\pi}{4}$\
+$Cov(U^2,\sqrt{1-U^2})=\frac{\pi}{16}-\frac{1}{3}\times\frac{\pi}{4}\approx-0.06544985$
+```{r question 2}
+# set seed
+set.seed(1029)
+
+# simulate
+u = runif(1000000)
+y = u^2
+z = sqrt(1 - y)
+cov(y, z)
+```
+
+## Question 3
+```{r question 3}
+# set seed
+set.seed(1029)
+
+# simulate
+sim_n = 10000
+for(i in 1:sim_n) {
+  
+}
+```
+
