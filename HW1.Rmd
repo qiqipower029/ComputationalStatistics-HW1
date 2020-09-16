@@ -150,6 +150,14 @@ mean(n_value)
 ## Question 5
 ```{r question 5}
 library(extraDistr)
-n_sim
+n_sim = 100000
+n_value = c()
+for (i in 1:n_sim) {
+  d1 = rdunif(1, 1, 6)
+  d2 = rdunif(1, 1, 6)
+  sum12 = d1 + d2
+  n_value[i] = sum12
+  
+}
 ```
 
