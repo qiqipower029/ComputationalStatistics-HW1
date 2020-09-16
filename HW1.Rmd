@@ -166,7 +166,7 @@ for (i in 1:n_sim) {
       within = as.numeric(j %in% d_list) # whether or not this outcome shows up in our experiments
       sum = sum + within
     }
-    statement = (sum == 11)
+    statement = (sum == 11) # If one outcome is not present in the experiments, we will start a new experiment
   }
   n_list[i] = n_value
   }
@@ -179,3 +179,10 @@ round(mean(n_list))
 Since $p_{j}=\frac{(j-1)!}{(j-r)!(r-1)!}p^r(1-p)^{j-r}$, $p_{j+1}=\frac{(j)!}{(j+1-r)!(r-1)!}p^r(1-p)^{j+1-r}$, we have $\frac{p_{j+1}}{p_{j}}=j(1-p)/(j+1-r)$
 
 #### (b)
+```{r question 6 b}
+# set seed
+set.seed(1029)
+
+
+```
+
