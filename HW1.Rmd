@@ -152,7 +152,7 @@ mean(n_value)
 library(extraDistr)
 set.seed(1029)
 n_sim = 100000
-n_list = numeric(n_sim) # a list to store all the values of the number of experiments
+n_list = numeric(n_sim) # to store all the values of the number of experiments
 for (i in 1:n_sim) {
   d_list = c()
   statement = F
@@ -163,10 +163,12 @@ for (i in 1:n_sim) {
     n_value = n_value + 1
     d_list = c(d_list, sum12)
     for (j in 2:12) {
-      within = as.numeric(j %in% d_list) # whether or not this outcome shows up in our experiments
+      # whether or not this outcome shows up in our experiments
+      within = as.numeric(j %in% d_list) 
       sum = sum + within
     }
-    statement = (sum == 11) # If one outcome is not present in the experiments, we will start a new experiment
+     # If one outcome is not present in the experiments, we will start a new experiment
+    statement = (sum == 11)
   }
   n_list[i] = n_value
   }
@@ -179,10 +181,20 @@ round(mean(n_list))
 Since $p_{j}=\frac{(j-1)!}{(j-r)!(r-1)!}p^r(1-p)^{j-r}$, $p_{j+1}=\frac{(j)!}{(j+1-r)!(r-1)!}p^r(1-p)^{j+1-r}$, we have $\frac{p_{j+1}}{p_{j}}=j(1-p)/(j+1-r)$
 
 #### (b)
-```{r question 6 b}
+The algorithm to generate a negative binomial variable:
+
+* Generate a random variable U, which follows uniform distribution. $U\sim Uniform(0, 1)$. In this case, $r$ means the number of success in a total number of $j$ trials. However, the last trial is defined to be successful.
+* Set $c=1-p$, $j=r$, $pr=p^r$, and $F=pr$.
+* If $U<F$, stop and report $j$.
+* Then update: $pr=\frac{c*pr}{j+1-r}pr$, $F=F+pr$, $j=j+1$.
+* Go to step 3 and repeat.
+
+#### (c)
+```{r question 6 c}
 # set seed
 set.seed(1029)
 
+# simulate
 
 ```
 
