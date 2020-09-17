@@ -190,6 +190,7 @@ The algorithm to generate a negative binomial variable:
 * Go to step 3 and repeat.
 
 #### (c)
+Theoretical value calculation:
 ```{r question 6 c}
 # set seed
 set.seed(1029)
