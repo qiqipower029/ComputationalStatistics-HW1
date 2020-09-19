@@ -218,3 +218,43 @@ mean(n_value)
 var(n_value)
 ```
 
+## Question 7
+Brute force to solve $E(|Z|)$:\
+$E(|Z|)=2\int^{\infty}_{0}z\frac{1}{\sqrt{2\pi}}e^{-\frac{1}{2}z^2}dz=$. Let $u=e^{-\frac{1}{2}z^2}$, then we have $du/dz=-ze^{-\frac{1}{2}z^2}$. So $E(|Z|)=-\int^{0}_{1} \frac{2}{\sqrt{2\pi}}du=\frac{2}{\sqrt{2\pi}}\approx0.798$
+```{r question 7}
+set.seed(1029)
+
+# create a large number of standard normally distributed variables
+z = rnorm(10000000, 0, 1)
+abs_z = abs(z)
+
+# check the average
+mean(abs_z)
+```
+
+## Question 8
+$E(X)=\int^{1}_{0}x\frac{e^x}{e-1}dx=\frac{1}{e-1}e^x(x-1)|^{1}_{0}\approx0.581977$.\
+$Var(X)=E(X^2)-(E(X))^2=\frac{1}{e-1}\int^{1}_{0}x^2e^xdx-(\frac{1}{e-1})^2=\frac{e-2}{e-1}-(\frac{1}{e-1})^2\approx0.079326$
+Simulation algorithm:
+Let $F(X)$ be the CDF for x, so $F(X)=\frac{1}{e-1}\int^{x}_{0}e^tdt=\frac{1}{e-1}(e^x-1)$.\
+Let $U=F(X)$, then $U\sim Uniform(0,1)$. So we have $x=log[(e-1)u+1]$.
+```{r question 8}
+# set.seed
+set.seed(1029)
+
+# simulate
+n_sim = 100000
+x_value = c()
+  
+for(i in 1:n_sim) {
+  # create the CDF for X
+  u = runif(1, 0, 1)
+  # express X using CDF
+  x = log((exp(1)-1)*u+1)
+  x_value[i] = x
+}
+
+mean(x_value)
+var(x_value)
+```
+
