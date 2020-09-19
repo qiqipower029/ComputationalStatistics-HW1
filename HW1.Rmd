@@ -190,12 +190,31 @@ The algorithm to generate a negative binomial variable:
 * Go to step 3 and repeat.
 
 #### (c)
-Theoretical value calculation:
+Theoretical value calculation:$E(X)=\frac{rp}{1-p}=\frac{5}{0.6}=12.5$, $Var(X)=\frac{r(1-p)}{p^2}=\frac{5*0.6}{0.16}=18.75$
 ```{r question 6 c}
 # set seed
 set.seed(1029)
 
 # simulate
+n_sim = 1000000
+p = 0.4
+r = 5
+c = 1 - p
+n_value = c()
+for (i in 1:n_sim) {
+  j = r
+  pr = p^r
+  u = runif(1, 0, 1)
+  F_store = pr
+  while (u>F_store) {
+    pr = c*pr*j/(j+1-r)
+    F_store = F_store + pr
+    j = j + 1
+  }
+  n_value[i] = j
+}
 
+mean(n_value)
+var(n_value)
 ```
 
