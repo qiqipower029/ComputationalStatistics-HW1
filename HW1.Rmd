@@ -284,6 +284,10 @@ $E(X|X<0.5)=\frac{1}{1-e^{-0.5}}\int^{0.5}_{0}xe^{-x}=\frac{1-(1.5)e^{-0.5}}{1-e
 set.seed(1029)
 
 # simulate
-
+n_sim = 100000000
+x = rexp(n_sim, 1)
+conditional_x = x[x<0.5]
+mean(conditional_x)
 ```
 
+## Question 11
