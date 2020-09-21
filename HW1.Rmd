@@ -1,5 +1,5 @@
 ---
-title: "HW1"
+title: "Homework 1"
 author: "Jieqi Tu"
 output: pdf_document
 ---
@@ -291,3 +291,30 @@ mean(conditional_x)
 ```
 
 ## Question 11
+Since it would be hard to find the root of the CDF, it is better to use acceptance-rejection method in this case.
+Let $g(X)=1$, then we have $\frac{f(x)}{g(x)}=30(x^2-2x^3+x^4)=h(x)$.\ 
+Set $h'(x)=60x(x-1)(2x-1)=0$, the roots are $x_{1}=0, x_{2}=1, x_{3}=0.5$.\ 
+Take the second derivative, when $x=0.5$, $h''(x)<0$, so $Max(h(x))=h(0.5)=15/8=1.875$. So, we set $c=1.875$.
+Therefore, $\frac{f(x)}{cg(x)}=16(x^2-2x^3+x^4)$.\
+Algorithm:
+
+* Step 1: Generate random variable $U\sim Uniform(0,1)$ and $Y\sim Uniform(0,1)$.
+* Step 2: If $U\leqslant16(Y^2-2Y^3+Y^4)$, set $X=Y$. Otherwise, go back to step 1.
+```{r question 11}
+set.seed(1029)
+
+# simulate
+n_sim = 1000000
+x_value = c() # empty set to store accepted Y
+for (i in 1:n_sim) {
+  u = runif(1) # Uniform distribution
+  y = runif(1) # Y~g(Y)
+  if(u<=16*(y^2-2*y^3+y^4)) {
+    x_value[i] = y
+  }
+  else {x_value[i]=NA}
+}
+mean(x_value, na.rm = T)
+var(x_value, na.rm = T)
+```
+
