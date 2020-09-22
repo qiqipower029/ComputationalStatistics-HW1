@@ -319,3 +319,32 @@ var(x_value, na.rm = T)
 ```
 
 ## Question 12
+
+#### With replacement
+```{r questio 12 with replacement}
+set.seed(1029)
+n_sim = 100000
+n = 100
+compare = numeric(n_sim)
+for (i in 1:n_sim) {
+  sample_i = sample(seq(1,n), n, replace = T, prob = rep(1/n,n))
+  num = seq(1,n)
+  compare[i] = sum(num == sample_i)
+}
+sum(compare!=0)/n_sim
+```
+
+#### Without replacement
+```{r question 12 without replacement}
+set.seed(1029)
+n_sim = 100000
+n = 100
+compare = numeric(n_sim)
+for (i in 1:n_sim) {
+  sample_i = sample(seq(1, n), n, replace = F, prob = rep(1/n, n))
+  num = seq(1,n)
+  compare[i] = sum(num == sample_i)
+}
+sum(compare!=0)/n_sim
+```
+
